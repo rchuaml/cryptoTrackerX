@@ -1,0 +1,33 @@
+h5 {
+  display: inline-block;
+  padding: 10px;
+  background: #B9121B;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.full-screen {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+nav{
+	height: 20%;
+}
+
+footer{
+	clear: both;
+}
+
+#app > div > footer > div.footer-copyright.text-center.py-3{
+	float:right;
+}
+
+body{
+	background: #696969;
+}
+
+form{
+	margin: 20px auto;
+}

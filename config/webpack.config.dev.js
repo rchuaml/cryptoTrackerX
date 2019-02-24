@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const Dotenv = require('dotenv-webpack');
+
 
 const commonConfig = require('./webpack.config.common');
 
@@ -25,6 +27,7 @@ module.exports = merge(commonConfig, {
     }),
     new HtmlWebpackHarddiskPlugin({
       outputPath: resolve(__dirname, '..', 'build-dev', 'client')
-    })
+    }),
+    new Dotenv()
   ]
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Coins extends React.Component{
     render(){
         return(

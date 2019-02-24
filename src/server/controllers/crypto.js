@@ -30,9 +30,8 @@ module.exports = (db) => {
         });
     }
 
-         let signup = (request, response) => {
-            console.log("request");
-            db.book.addUser(response, request.body, (error, result) => {
+         let signup = (req, res) => {
+            db.crypto.addUser(res, req.body, (error, result) => {
                 console.log(result.rows);
             });
         }

@@ -3,6 +3,8 @@ const express = require('express');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const db = require('./db');
+const cors = require('cors');
+
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 process.env.PORT = process.env.PORT || 3000;
@@ -37,12 +39,14 @@ app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
 });
+app.use(cors());
 
 // Set react-views to be the default view engine
 const reactEngine = require('express-react-views').createEngine();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', reactEngine);
+
 
 require('./routes')(app, db);
 

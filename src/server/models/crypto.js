@@ -1,4 +1,5 @@
 const cookieParser = require('cookie-parser');
+var sha256 = require('js-sha256');
 
 /**
  * ===========================================
@@ -30,8 +31,8 @@ module.exports = (db) => {
         db.query(queryString, (err, queryResult) => {
 
             if (queryResult.rows.length === 0) {
-                //proceed to push in details to users table
-                let newquery = `INSERT into users(username,password)VALUES('${details.username}','${details.password}')`;
+                let hashedpassword = sha256(details.password+'SALT');
+                let newquery = `INSERT into users(username,password)VALUES('${details.username}','${hashedpassword}')`;
                 db.query(newquery, (err, queryResult) => {})
                 response.json('2');
             } else {
@@ -79,12 +80,6 @@ module.exports = (db) => {
         });
     };
 
-    // let editPercent =(response, isbnNumber, editedNumber, callback) =>{
-    //     let queryString = `UPDATE book SET progress = ${editedNumber} WHERE isbn = '${isbnNumber}'`;
-    //     db.query(queryString, (err,queryResult) =>{
-    //         response.redirect('/user/profile');
-    //     });
-    // }
 
     return {
         getUserLoginInfo,

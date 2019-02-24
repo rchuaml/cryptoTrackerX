@@ -31,12 +31,11 @@ module.exports = (db) => {
 
             if (queryResult.rows.length === 0) {
                 //proceed to push in details to users table
-                let newquery = `INSERT into users(name,username,password,personality,photo_url)VALUES('${details.name}','${details.username}','${details.password}','${details.personality}','${details.photo_url}')`;
+                let newquery = `INSERT into users(username,password)VALUES('${details.username}','${details.password}')`;
                 db.query(newquery, (err, queryResult) => {})
-                response.redirect('/user/login');
-
+                response.json('2');
             } else {
-                response.render('signUp', { list: ['error'] });
+                response.json('1');
             }
         });
 
@@ -89,5 +88,6 @@ module.exports = (db) => {
 
     return {
         getUserLoginInfo,
+        addUser
     };
 };

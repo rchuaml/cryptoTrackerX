@@ -32,31 +32,27 @@ class Signup extends React.Component {
 
     signupHandler(){
         console.log("signup pressed");
-        // var that = this;
-      //   axios.post('/user/signup', {
-      //   username: this.state.username,
-      //   password: this.state.password
-      // }).then(function (response) {
-      //   if(response.data === "1"){
-      //       document.getElementById("error").className = "alert alert-danger";
-      //       that.setState({error:"Username doesnt exist, please try another username!"});
-      //   }
-      //   else if(response.data === "2"){
-      //       document.getElementById("error").className = "alert alert-danger";
-      //       that.setState({error:"Password is wrong, please try again"});
-      //   }
-      //   else if (response.data === "3"){
-      //       cookies.set('loggedIn', 'true', { path: '/' });
-      //       that.setState({redirect: true});
-      //   }
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+        var that = this;
+        axios.post('/user/signup', {
+        username: this.state.username,
+        password: this.state.password
+      }).then(function (response) {
+        if(response.data === "1"){
+            document.getElementById("error").className = "alert alert-danger";
+            that.setState({error:"Username already exists in our system, please try another username!"});
+        }
+        else if (response.data === "2"){
+            cookies.set('loggedIn', 'true', { path: '/' });
+            that.setState({redirect: true});
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
   render() {
-    console.log("truthy inside login", cookies.get('loggedIn'));
+    console.log("truthy inside signup", cookies.get('loggedIn'));
     if(this.state.redirect === false){
     return (
         <div>

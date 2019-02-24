@@ -2,7 +2,6 @@ const request = require('request');
 var sha256 = require('js-sha256');
 var cookieParser = require('cookie-parser');
 
-
 module.exports = (db) => {
 
 
@@ -35,12 +34,18 @@ module.exports = (db) => {
                 console.log(result.rows);
             });
         }
+         let coindata = (req,res) => {
+            request("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=",function(error, queryResponse, body){
+            res.json(body);
+            });
+         }
 
 
 
 
   return {
     login:login,
-    signup:signup
+    signup:signup,
+    coindata:coindata
   };
 };

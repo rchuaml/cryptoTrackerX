@@ -16,6 +16,12 @@ module.exports = merge(commonConfig, {
     hotUpdateChunkFilename: 'hot-update.[hash:6].js'
   },
   devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    }
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),

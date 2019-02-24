@@ -35,9 +35,12 @@ return(
         <li className="nav-item">
           <Link className="nav-link" to="/coins">Coins</Link>
         </li>
+        {(cookies.get('loggedIn')!=="true") ?
         <li className="nav-item">
           <Link className="nav-link" to="/signup">Sign Up</Link>
         </li>
+        : <div/>
+        }
         <li className="nav-item">
           <Link className ="nav-link" to={(cookies.get('loggedIn')==="true")? "/logout" : "/login"}>{(cookies.get('loggedIn')==="true")? 'Logout' : 'Login'}</Link>
         </li>
@@ -98,7 +101,7 @@ class App extends React.Component {
   }
 
     render() {
-        console.log("truthy", cookies.get('loggedIn'));
+        console.log(this.props.location);
               return(
                 <div>
                 <Navbar/>
@@ -107,8 +110,18 @@ class App extends React.Component {
                     <Route
                       path='/login'
                       render={() => (
-                        <Login/>
-                      )}
+                      (cookies.get('loggedIn')!=="true") ? (
+                           <Login/>
+                      ) : (
+                <Redirect to= {{
+                            pathname: '/',
+                            state: { message: 'Already logged in!',
+                                        type: 'danger'
+                                    }
+                             }}
+                        />
+                        )
+                        )}
                     />
                     <Route
                       exact path='/'
@@ -122,13 +135,31 @@ class App extends React.Component {
                       (cookies.get('loggedIn')==="true") ? (
                            <Coins/>
                       ) : (
-                        <Redirect to="/login"/>
+                        <Redirect to= {{
+                            pathname: '/',
+                            state: { message: 'You need to login before you can access that feature',
+                                        type: 'danger'
+                             }
+                        }}
+                        />
                         )
                         )}
                     />
                     <Route
                     path = '/signup'
-                    component={Signup}/>
+                    render={() => (
+                      (cookies.get('loggedIn')!=="true") ? (
+                           <Signup/>
+                      ) : (
+                        <Redirect to= {{
+                            pathname: '/',
+                            state: { message: 'Please logout before signing up again',
+                                        type: 'danger'
+                             }
+                        }}
+                        />
+                        )
+                        )}/>
                     <Route
                     path = '/logout'
                     component={Logout}/>

@@ -1,6 +1,8 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import Home from '../home/home';
+import {Switch, Route, Link, Redirect } from "react-router-dom";
+
 const cookies = new Cookies();
 
 class Logout extends React.Component{
@@ -15,21 +17,23 @@ class Logout extends React.Component{
     if(cookies.get('loggedIn')==="true"){
         cookies.remove('loggedIn', { path: '/' });
         return(
-            <div>
-            <div class="alert alert-success" role="alert">
-            Successfully Logged Out
-            </div>
-              <Home />
-            </div>
+        <Redirect to= {{
+            pathname: '/',
+            state: { message: 'Successfully logged out',
+                        type: 'success'
+             }
+        }}
+        />
             );
         }   else   {
                 return(
-                    <div>
-                    <div class="alert alert-danger" role="alert">
-                    Already Logged Out
-                    </div>
-                    <Home/>
-                </div>
+                    <Redirect to= {{
+                        pathname: '/',
+                        state: { message: 'Already logged out',
+                                    type: 'danger'
+                         }
+                    }}
+                    />
                     )
             }
         }

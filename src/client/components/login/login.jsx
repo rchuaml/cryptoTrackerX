@@ -87,7 +87,13 @@ class Login extends React.Component {
     );
 } else{
     return(
-        <Redirect to= "/"/>
+        <Redirect to= {{
+            pathname: '/',
+            state: { message: 'Successfully logged in',
+                        type: 'success'
+             }
+        }}
+        />
         )
   }
 }

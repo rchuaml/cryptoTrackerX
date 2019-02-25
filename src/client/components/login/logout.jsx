@@ -16,6 +16,7 @@ class Logout extends React.Component{
     render(){
     if(cookies.get('loggedIn')==="true"){
         cookies.remove('loggedIn', { path: '/' });
+        cookies.remove('userName', { path: '/' });
         return(
         <Redirect to= {{
             pathname: '/',

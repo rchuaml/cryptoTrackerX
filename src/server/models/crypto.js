@@ -1,6 +1,7 @@
 const cookieParser = require('cookie-parser');
 var sha256 = require('js-sha256');
 
+
 /**
  * ===========================================
  * Export model functions as a module
@@ -80,9 +81,23 @@ module.exports = (db) => {
         });
     };
 
+    let addCoin = (response, request, details, callback) => {
+        console.log(details);
+        console.log(request.cookies.userName);
+        let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
+        db.query(queryName,(err,queryResult)=>{
+            let idn = queryResult.rows[0].id;
+            let queryString = `INSERT INTO coins (owner_id,symbol,buyprice,logo,coinid)VALUES(${idn},${details.symbol},${details.quote.USD.price},${details.id},${details.id})`;
+            db.query(queryString,(err,queryResult)=>{
+                response.json("success");
+            });
+        });
+    }
+
 
     return {
         getUserLoginInfo,
-        addUser
+        addUser,
+        addCoin
     };
 };

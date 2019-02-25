@@ -20,7 +20,7 @@ module.exports = (db) => {
                     let hashedInputPassword = sha256(req.body.password + 'SALT');
                     console.log(hashedInputPassword);
                     if (hashedPassword === hashedInputPassword) {
-                        res.json("3");
+                        res.json(user_name);
                     } else {
                         res.json("2");
                     }
@@ -41,10 +41,8 @@ module.exports = (db) => {
          }
 
          let coinadd = (req,res) => {
-            // db.crypto.addCoin(req.body,(error,result)=>{
-
-            // });
-            console.log(req.body);
+            db.crypto.addCoin(res,req,req.body,(error,result)=>{
+            });
          }
 
 

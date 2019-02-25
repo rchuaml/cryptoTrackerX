@@ -48,8 +48,9 @@ class Login extends React.Component {
             document.getElementById("error").className = "alert alert-danger";
             that.setState({error:"Password is wrong, please try again"});
         }
-        else if (response.data === "3"){
+        else{
             cookies.set('loggedIn', 'true', { path: '/' });
+            cookies.set('userName', response.data, { path: '/' });
             that.setState({redirect: true});
         }
       })

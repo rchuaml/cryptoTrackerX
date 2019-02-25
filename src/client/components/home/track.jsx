@@ -33,8 +33,20 @@ class Track extends React.Component{
       })
     }
 
-    clickHandler(){
+    editHandler(){
+        console.log("edithandler clicked");
+    }
 
+    deleteHandler(){
+        console.log("deleteHandler clicked");
+    }
+
+    changePrice(event){
+        console.log(event.target.value);
+    }
+
+    changeQuantity(event){
+        console.log(event.target.value);
     }
 
     render(){
@@ -44,14 +56,14 @@ class Track extends React.Component{
                         {this.state.list.map((listitem , index)=>{
                         return <li className = "list-group-item"><span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.cmcid}.png`}/>
                             <span>
-                                Name: {listitem.name} |
-                            </span>
-                            <span>Buy price: USD${listitem.buyprice}  |</span>
+                                Name: {listitem.name}
+                            </span><br/>
+                            <span>Buy price: USD${listitem.buyprice}</span><br/>
                             <span>Quantity: {listitem.qty}</span>
-                            <input class = "float-right" placeholder = "Edit Buy Price"/>
-                            <input class = "float-right" placeholder = "Edit Quantity"/>
-                            <button class = "float-right" onClick = {() => {this.clickHandler(index)}}>Edit</button>
-                            <button class = "float-right" onClick = {() => {this.clickHandler(index)}}>Delete</button>
+                            <input class = "float-right" placeholder = "Edit Buy Price" onChange = {() => {this.changePrice(event)}}/>
+                            <input class = "float-right" placeholder = "Edit Quantity" onChange = {() => {this.changeQuantity(event)}}/>
+                            <button class = "float-right" onClick = {() => {this.editHandler(index)}}>Edit</button>
+                            <button class = "float-right" onClick = {() => {this.deleteHandler(index)}}>Delete</button>
                         </li>
                         })}
                     </ol>

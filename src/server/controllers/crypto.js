@@ -41,9 +41,10 @@ module.exports = (db) => {
          }
 
          let coinadd = (req,res) => {
-            db.crypto.addCoin(req.body,(error,result)=>{
+            // db.crypto.addCoin(req.body,(error,result)=>{
 
-            });
+            // });
+            console.log(req.body);
          }
 
 

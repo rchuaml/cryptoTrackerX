@@ -87,17 +87,30 @@ module.exports = (db) => {
         let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
         db.query(queryName,(err,queryResult)=>{
             let idn = queryResult.rows[0].id;
-            let queryString = `INSERT INTO coins (owner_id,symbol,buyprice,logo,coinid)VALUES(${idn},${details.symbol},${details.quote.USD.price},${details.id},${details.id})`;
+            let queryString = `INSERT INTO coins (owner_id,name,symbol,buyprice,logo,cmcid)VALUES(${idn},'${details.name}','${details.symbol}',${details.quote.USD.price},${details.id},${details.id})`;
             db.query(queryString,(err,queryResult)=>{
                 response.json("success");
             });
         });
     }
 
+    let trackCoin = (response, request, details, callback) => {
+        let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
+        db.query(queryName,(err,queryResult)=>{
+            let idn = queryResult.rows[0].id;
+            let queryString = `SELECT * FROM coins WHERE owner_id = ${idn}`;
+            db.query(queryString,(err,queryResult2)=>{
+                console.log(queryResult2.rows);
+                response.json(queryResult2.rows);
+            });
+        });
+}
+
 
     return {
         getUserLoginInfo,
         addUser,
-        addCoin
+        addCoin,
+        trackCoin
     };
 };

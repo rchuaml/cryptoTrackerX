@@ -11,10 +11,12 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS coins (
   id SERIAL PRIMARY KEY,
   owner_id INTEGER,
+  name TEXT,
   symbol TEXT,
   buyprice INTEGER,
   logo TEXT,
   cmcId INTEGER,
+  qty INTEGER DEFAULT 0,
   timestamp_coin TIMESTAMP DEFAULT now()
 );
 

@@ -7,4 +7,5 @@ module.exports = (app, db) => {
   app.post('/user/signup',crypto.signup);
   app.get('/coin/data', crypto.coindata);
   app.post('/coin/add', crypto.coinadd);
+  app.get('/coin/track', crypto.cointrack);
 };

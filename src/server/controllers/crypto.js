@@ -45,6 +45,11 @@ module.exports = (db) => {
             });
          }
 
+         let cointrack = (req,res) => {
+            db.crypto.trackCoin(res,req,req.body,(error,result) => {
+            });
+         }
+
 
 
 
@@ -52,6 +57,7 @@ module.exports = (db) => {
     login:login,
     signup:signup,
     coindata:coindata,
-    coinadd:coinadd
+    coinadd:coinadd,
+    cointrack:cointrack
   };
 };

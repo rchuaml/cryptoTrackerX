@@ -35,8 +35,14 @@ module.exports = (db) => {
             });
         }
          let coindata = (req,res) => {
-            request("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=",function(error, queryResponse, body){
+            request("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=4de854e2-ca90-456e-85df-b00de91448c5",function(error, queryResponse, body){
             res.json(body);
+            });
+         }
+
+         let coinadd = (req,res) => {
+            db.crypto.addCoin(req.body,(error,result)=>{
+
             });
          }
 
@@ -46,6 +52,7 @@ module.exports = (db) => {
   return {
     login:login,
     signup:signup,
-    coindata:coindata
+    coindata:coindata,
+    coinadd:coinadd
   };
 };

@@ -6,6 +6,8 @@ import Login from './components/login/login';
 import Logout from './components/login/logout';
 import Signup from './components/login/signup';
 import Coins from './components/home/coins';
+import Dashboard from './components/home/dashboard';
+
 
 import {Switch, Route, Link, Redirect } from "react-router-dom";
 import Cookies from 'universal-cookie';
@@ -31,6 +33,9 @@ return(
           <Link className="nav-link" to="/">Home
                 <span className="sr-only">(current)</span>
               </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/dashboard">Dashboard</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/coins">Coins</Link>
@@ -113,7 +118,7 @@ class App extends React.Component {
                       (cookies.get('loggedIn')!=="true") ? (
                            <Login/>
                       ) : (
-                <Redirect to= {{
+                        <Redirect to= {{
                             pathname: '/',
                             state: { message: 'Already logged in!',
                                         type: 'danger'
@@ -158,8 +163,27 @@ class App extends React.Component {
                              }
                         }}
                         />
+
                         )
                         )}/>
+
+                    <Route
+                      path='/dashboard'
+                      render={() => (
+                      (cookies.get('loggedIn')==="true") ? (
+                           <Dashboard/>
+                      ) : (
+                        <Redirect to= {{
+                            pathname: '/',
+                            state: { message: 'You need to login before you can access that feature',
+                                        type: 'danger'
+                             }
+                        }}
+                        />
+                        )
+                        )}
+                    />
+
                     <Route
                     path = '/logout'
                     component={Logout}/>

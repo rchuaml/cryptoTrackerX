@@ -80,6 +80,9 @@ module.exports = (db) => {
         });
     };
 
+    let addCoin = (details,callback) => {
+
+    };
 
     return {
         getUserLoginInfo,

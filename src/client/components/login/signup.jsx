@@ -74,8 +74,8 @@ class Signup extends React.Component {
         </form>
         </div>
     );
-} else{
-    return(
+}   else{
+        return(
         <Redirect to= "/"/>
         )
   }

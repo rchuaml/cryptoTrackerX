@@ -41,7 +41,7 @@ module.exports = (db) => {
          }
 
          let coinadd = (req,res) => {
-            db.crypto.addCoin(res,req,req.body,(error,result)=>{
+            db.crypto.addCoin(res,req,req.body,(error,result) => {
             });
          }
 
@@ -50,6 +50,15 @@ module.exports = (db) => {
             });
          }
 
+         let coinedit = (req,res) => {
+            db.crypto.coinEdit(res,req,req.body,(error,result) => {
+                console.log(req);
+            });
+         }
+
+         let coinDelete = (req,res) => {
+
+         }
 
 
 
@@ -58,6 +67,7 @@ module.exports = (db) => {
     signup:signup,
     coindata:coindata,
     coinadd:coinadd,
-    cointrack:cointrack
+    cointrack:cointrack,
+    coinedit:coinedit
   };
 };

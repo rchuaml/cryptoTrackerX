@@ -7,6 +7,8 @@ class Track extends React.Component{
         super();
         this.state = {
         list: [],
+        price: "",
+        quantity: ""
     };
 }
    componentDidMount() {
@@ -34,19 +36,40 @@ class Track extends React.Component{
     }
 
     editHandler(){
-        console.log("edithandler clicked");
+        var that = this;
+        axios.put('/coin/edit', {price : this.state.price, quantity: this.state.quantity})
+      .then(function (response) {
+        console.log(response);
+        that.setState({list: list});
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
     }
 
-    deleteHandler(){
+    deleteHandler(index){
         console.log("deleteHandler clicked");
+        var that = this;
+        var coinid = this.state.list[index].id;
+        console.log(coinid);
+        axios.delete('/coin/delete', {coinid})
+      .then(function (response) {
+        console.log(response);
+        that.setState({list: list});
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
     }
 
     changePrice(event){
         console.log(event.target.value);
+        this.setState({price: event.target.value});
     }
 
     changeQuantity(event){
         console.log(event.target.value);
+        this.setState({quantity : event.target.value});
     }
 
     render(){
@@ -60,8 +83,8 @@ class Track extends React.Component{
                             </span><br/>
                             <span>Buy price: USD${listitem.buyprice}</span><br/>
                             <span>Quantity: {listitem.qty}</span>
-                            <input class = "float-right" placeholder = "Edit Buy Price" onChange = {() => {this.changePrice(event)}}/>
-                            <input class = "float-right" placeholder = "Edit Quantity" onChange = {() => {this.changeQuantity(event)}}/>
+                            <input class = "float-right" placeholder = "Edit Buy Price" value = {listitem.buyprice} onChange = {() => {this.changePrice(event)}}/>
+                            <input class = "float-right" placeholder = "Edit Quantity" value = {listitem.qty} onChange = {() => {this.changeQuantity(event)}}/>
                             <button class = "float-right" onClick = {() => {this.editHandler(index)}}>Edit</button>
                             <button class = "float-right" onClick = {() => {this.deleteHandler(index)}}>Delete</button>
                         </li>

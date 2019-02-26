@@ -98,19 +98,35 @@ module.exports = (db) => {
         let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
         db.query(queryName,(err,queryResult)=>{
             let idn = queryResult.rows[0].id;
-            let queryString = `SELECT * FROM coins WHERE owner_id = ${idn}`;
+            let queryString = `SELECT * FROM coins WHERE owner_id = ${idn} ORDER BY id`;
             db.query(queryString,(err,queryResult2)=>{
                 console.log(queryResult2.rows);
                 response.json(queryResult2.rows);
             });
         });
 }
+    let coinEdit = (response, request, details, callback) => {
+        let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
+        db.query(queryName,(err,queryResult)=>{
+            let idn = queryResult.rows[0].id;
+            console.log(details);
+            let queryString = `UPDATE coins SET qty = ${details.quantity}, buyprice = ${details.price} WHERE id = 1;`;
+            db.query(queryString, (err, queryResult2)=>{
+                if(err){
+                    response.json(err);
+                }else{
+                    response.json("success");
+                }
+            });
+        });
+    }
 
 
     return {
         getUserLoginInfo,
         addUser,
         addCoin,
-        trackCoin
+        trackCoin,
+        coinEdit
     };
 };

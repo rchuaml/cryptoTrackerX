@@ -42,7 +42,7 @@ trackClick(){
                             <ul class = "list-group">
                                 <li class=" list-group-item active"><h4 class="hidden-xs hidden-sm text-dark">Menu</h4></li>
                                 <li onClick = {this.homeClick} class="list-group-item-primary list-group-item"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm "></span>   Home</li>
-                                <li onCLick = {this.coinHandler} class = "list-group-item list-group-item-primary"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Coins</span></li>
+                                <li onClick = {this.coinHandler} class = "list-group-item list-group-item-primary"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Coins</span></li>
                                 <li onClick = {this.trackClick} class = "list-group-item list-group-item-primary"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Tracking List</span></li>
                                 <li class = "list-group-item list-group-item-primary"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">    Calender</span></li>
                                 <li class = "list-group-item list-group-item-primary"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Users</span></li>

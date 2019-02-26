@@ -9,5 +9,5 @@ module.exports = (app, db) => {
   app.post('/coin/add', crypto.coinadd);
   app.get('/coin/track', crypto.cointrack);
   app.put('/coin/edit', crypto.coinedit);
-  // app.delete('/coin/delete', crypto.coinDelete);
+  app.delete('/coin/delete', crypto.coinDelete);
 };

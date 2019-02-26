@@ -43,19 +43,6 @@ module.exports = (db) => {
 
     };
 
-    let addBook = (response, username, inspected, callback) => {
-
-        let queryString = `SELECT id FROM users WHERE username ='${username}'`;
-        db.query(queryString, (err, queryResult) => {
-            let id = queryResult.rows[0].id;
-            let newString = `INSERT INTO book (owner_id,title,description,thumbnail) VALUES (${id},'${inspected.title}', '${inspected.description}', '${inspected.thumbnail}')`;
-            db.query(newString, (err, queryResult) => {
-                response.redirect('/book');
-            });
-        });
-    };
-
-
     let getProfile = (request, response, callback) => {
         let userId = request.cookies.userId;
         let queryString = `SELECT * FROM book WHERE owner_id = '${userId}' ORDER BY id`;
@@ -98,7 +85,7 @@ module.exports = (db) => {
         let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
         db.query(queryName,(err,queryResult)=>{
             let idn = queryResult.rows[0].id;
-            let queryString = `SELECT * FROM coins WHERE owner_id = ${idn} ORDER BY id`;
+            let queryString = `SELECT * FROM coins WHERE owner_id = ${idn} ORDER BY id DESC`;
             db.query(queryString,(err,queryResult2)=>{
                 console.log(queryResult2.rows);
                 response.json(queryResult2.rows);
@@ -106,18 +93,25 @@ module.exports = (db) => {
         });
 }
     let coinEdit = (response, request, details, callback) => {
-        let queryName = `SELECT id from users WHERE username = '${request.cookies.userName}'`;
-        db.query(queryName,(err,queryResult)=>{
-            let idn = queryResult.rows[0].id;
             console.log(details);
-            let queryString = `UPDATE coins SET qty = ${details.quantity}, buyprice = ${details.price} WHERE id = 1;`;
+            let queryString = `UPDATE coins SET qty = ${parseFloat(details.quantity)}, buyprice = ${parseFloat(details.price)} WHERE id = ${details.id}`;
             db.query(queryString, (err, queryResult2)=>{
                 if(err){
                     response.json(err);
                 }else{
-                    response.json("success");
+                    response.json("successsfully edited");
                 }
-            });
+        });
+    }
+
+    let coinDelete = (response, request, details, callback) => {
+        let queryString = `DELETE from coins WHERE id = ${details}`;
+        db.query(queryString, (err, queryResult2)=>{
+            if(err){
+                response.json(err);
+            } else {
+                response.json("Successfully deleted");
+            }
         });
     }
 
@@ -127,6 +121,7 @@ module.exports = (db) => {
         addUser,
         addCoin,
         trackCoin,
-        coinEdit
+        coinEdit,
+        coinDelete
     };
 };

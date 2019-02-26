@@ -7,6 +7,7 @@ class Coins extends React.Component{
         super();
         this.state = {
         list: [],
+        message: "",
     };
     }
 
@@ -44,6 +45,7 @@ class Coins extends React.Component{
             )
           .then(function (response) {
             console.log(response);
+            alertify.success("Successfully added coin!");
           })
           .catch(function (error) {
             console.log(error);
@@ -54,7 +56,7 @@ class Coins extends React.Component{
         console.log(this.state.list);
         return(
                 <div>
-                    <div id = "message"></div>
+                    <div id = "message">{this.state.message}</div>
                     <ol className = "list-group">
                         {this.state.list.map((listitem , index)=>{
                         return <li className = "list-group-item"><span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.id}.png`}/>
@@ -63,6 +65,7 @@ class Coins extends React.Component{
                             </span>
                             <span>USD${listitem.quote.USD.price}</span>
                             <button class = "float-right" onClick = {() => {this.clickHandler(index)}}>Track this coin</button>
+                            <small class = "float-right">Last Updated: {moment(listitem.quote.USD.last_updated).format("dddd, MMMM Do YYYY, h:mm:ss a")}</small>
                         </li>
                         })}
                     </ol>

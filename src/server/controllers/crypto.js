@@ -52,12 +52,12 @@ module.exports = (db) => {
 
          let coinedit = (req,res) => {
             db.crypto.coinEdit(res,req,req.body,(error,result) => {
-                console.log(req);
             });
          }
 
          let coinDelete = (req,res) => {
-
+            db.crypto.coinDelete(res,req,req.body.id,(error,result) => {
+            });
          }
 
 
@@ -68,6 +68,7 @@ module.exports = (db) => {
     coindata:coindata,
     coinadd:coinadd,
     cointrack:cointrack,
-    coinedit:coinedit
+    coinedit:coinedit,
+    coinDelete:coinDelete
   };
 };

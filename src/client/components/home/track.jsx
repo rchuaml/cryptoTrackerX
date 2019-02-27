@@ -1,7 +1,6 @@
 import React from 'react';
 const axios = require('axios');
 
-
 class Track extends React.Component{
     constructor(){
         super();
@@ -9,37 +8,36 @@ class Track extends React.Component{
         list: [],
         price: "",
         quantity: "",
-        message: ""
+        message: "",
+        sum: "",
+        costs: ""
     };
     this.deleteHandler = this.deleteHandler.bind(this);
+    this.calculateTotal = this.calculateTotal.bind(this);
 
 }
 
 
 
    componentDidMount() {
-    console.log(" component did mount run coin.jsx");
+    console.log(" componentdiddymount run coin.jsx");
     var that = this;
     axios.get('/coin/track')
   .then(function (response) {
-    that.setState({list: response.data});
+    that.setState({list:response.data});
   })
   .catch(function (error) {
     console.log(error);
   })
+
 }
 
     componentWillReceiveProps() {
-    console.log("component did receiveprops run coin.jsx");
+        console.log(" componentwillreceiveprops run coin.jsx");
         var that = this;
         axios.get('/coin/track')
       .then(function (response) {
-        that.setState({list: response.data});
-        var array = [];
-        for(var i = 0; i < response.data.length; i++){
-            array.push(response.data[i].symbol);
-        }
-
+        that.setState({list:response.data});
       })
       .catch(function (error) {
         console.log(error);
@@ -53,7 +51,7 @@ class Track extends React.Component{
           .then(function (response) {
             console.log(response);
             alertify.success("Successfully edited coin.");
-            that.componentDidMount();
+            that.componentWillReceiveProps();
           })
           .catch(function (error) {
             console.log(error);
@@ -72,11 +70,32 @@ class Track extends React.Component{
       .then(function (response) {
         console.log(that.state.list);
         alertify.success("Successsfully deleted coin.");
-        that.componentDidMount();
+        that.componentWillReceiveProps();
       })
       .catch(function (error) {
         console.log(error);
       })
+    }
+
+    calculateTotal(){
+        var that = this;
+        axios.post('/coin/calculate', that.state.list)
+        .then(function(response){
+            var sum = 0;
+            for(var i = 0 ; i < response.data.length; i++){
+                sum += response.data[i];
+            }
+             that.setState({sum: sum});
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+         var costs = 0;
+        for(var i = 0; i < that.state.list.length; i++){
+            costs += (that.state.list[i].buyprice*that.state.list[i].qty);
+        }
+        document.getElementById("port").style =  "display:block";
+        that.setState({costs: costs});
     }
 
     changePrice(event){
@@ -90,14 +109,20 @@ class Track extends React.Component{
     }
 
     render(){
-        console.log("rerender happen");
+        var divstyle = {
+            display: "none",
+        };
+
+        var red = {
+            text: "red",
+        };
+
         return(
             <div>
-            <div id = "message">
-                {this.state.message}
-                  <button id = "close-button" type="button" class="close" data-dismiss="alert" aria-label="Close" >
-              </button>
-            </div>
+
+              <div class="card bg-warning text-white"><div class="card-body"><button onClick = {this.calculateTotal}>Calculate total</button><br/><div id = "port" style = {divstyle} ><h6>Total Portfolio value = USD$ {parseFloat(this.state.sum).toFixed(2)}</h6><h6>Total Costs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= USD$ {this.state.costs}</h6>
+                {(this.state.sum-this.state.costs<0) ? <h6 class = "text-danger">Losses = USD$ {parseFloat(this.state.sum-this.state.costs).toFixed(2)}<br/>Percentage Loss = {(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} % </h6> : <div class = "text-success"><h6>Total Profits = USD$ +{parseFloat(this.state.sum-this.state.costs).toFixed(2)}</h6><h6>Percentage Profits = +{(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} %  </h6></div>}
+              </div></div></div>
                 <ol className = "list-group">
                         {this.state.list.map((listitem , index)=>{
                         return <li className = "list-group-item d-inline-block"><span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.cmcid}.png`}/>
@@ -111,7 +136,7 @@ class Track extends React.Component{
                             <input placeholder = {listitem.qty} onChange = {() => {this.changeQuantity(event)}} />
                             <input placeholder = {listitem.buyprice} onChange = {() => {this.changePrice(event)}}/>
                             <button onClick = {()=>{alertify.confirm('Are you sure you want to delete this coin?', ()=>{this.deleteHandler(index)} )}}>Delete</button>
-                            <button onClick = {()=>{alertify.confirm('Comfirm Edit?', ()=>{this.deleteHandler(index)} )}}>Edit</button>
+                            <button onClick = {()=>{alertify.confirm('Comfirm Edit?', ()=>{this.editHandler(index)} )}}>Edit</button>
                             </div>
                             <div class="d-inline">
                             <br/><span>Buy price: USD${listitem.buyprice}</span><br/>

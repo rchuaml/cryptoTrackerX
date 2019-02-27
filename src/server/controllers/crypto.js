@@ -60,6 +60,28 @@ module.exports = (db) => {
             });
          }
 
+         let coinCalc = (req,res) => {
+            var array = []
+            for(var i = 0; i < req.body.length; i ++){
+            array.push(req.body[i].cmcid);
+            }
+            console.log(array);
+            var queryString = array.join();
+            console.log(queryString);
+            request(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${queryString}&convert=USD&CMC_PRO_API_KEY=4de854e2-ca90-456e-85df-b00de91448c5`,function(error, queryResponse, body){
+            // for(var j = 0; j < req.body.length; j ++){
+            //     body.data[]
+            // }
+            var newArr = [];
+                var data = JSON.parse(body);
+            for(j = 0 ; j < req.body.length; j++){
+                newArr.push(data.data[`${req.body[j].cmcid}`].quote.USD.price*req.body[j].qty);
+            }
+            console.log(newArr);
+            res.json(newArr);
+            });
+         }
+
 
 
   return {
@@ -69,6 +91,7 @@ module.exports = (db) => {
     coinadd:coinadd,
     cointrack:cointrack,
     coinedit:coinedit,
-    coinDelete:coinDelete
+    coinDelete:coinDelete,
+    coinCalc:coinCalc
   };
 };

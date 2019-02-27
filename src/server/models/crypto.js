@@ -87,7 +87,6 @@ module.exports = (db) => {
             let idn = queryResult.rows[0].id;
             let queryString = `SELECT * FROM coins WHERE owner_id = ${idn} ORDER BY id DESC`;
             db.query(queryString,(err,queryResult2)=>{
-                console.log(queryResult2.rows);
                 response.json(queryResult2.rows);
             });
         });

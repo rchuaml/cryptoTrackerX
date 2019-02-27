@@ -35,6 +35,7 @@ newsClick(){
 }
 
     render(){
+
         var selected = <Coins/>
         if(this.state.selected === ""){
             selected = <Coins/>
@@ -44,11 +45,13 @@ newsClick(){
             selected = <News/>
         }
     return (
+
                 <div>
                     <div class="row">
                         <div class="col-3">
-                            <ul class = "list-group">
-                                <li class=" list-group-item active"><h4 class="hidden-xs hidden-sm text-dark">Menu</h4></li>
+                        <div class = "position-fixed">
+                            <ul class = "list-group " style={{"width" : "350px"}}>
+                                <li class=" list-group-item active" ><h4 class="hidden-xs hidden-sm text-dark">Menu</h4></li>
                                 <li onClick = {this.homeClick} class="list-group-item-primary list-group-item" id = "lol"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm "></span>   Home</li>
                                 <li onClick = {this.coinHandler} class = "list-group-item list-group-item-primary"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Coins</span></li>
                                 <li onClick = {this.trackClick} class = "list-group-item list-group-item-primary"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Tracking List</span></li>
@@ -56,6 +59,7 @@ newsClick(){
                                 <li class = "list-group-item list-group-item-primary"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Users</span></li>
                                 <li class = "list-group-item list-group-item-primary"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Setting</span></li>
                             </ul>
+                            </div>
                         </div>
                         <div class="col-9">
                         {selected}

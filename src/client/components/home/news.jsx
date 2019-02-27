@@ -26,12 +26,35 @@ class News extends React.Component{
         list.push(response.data[i].symbol)
     }
 
-    axios.post('/coin/news', {list})
+
+        axios.post('/coin/news', {list})
+      .then(function (response) {
+        console.log("RESPONSE.DATA", response.data);
+        that.setState({news: response.data});
+      })
+    })
+
+}
+
+    componentWillReceiveProps() {
+    var that = this;
+    var datalist = [];
+    var newarr = [];
+    axios.get('/coin/track')
   .then(function (response) {
-    console.log("RESPONSE.DATA", response.data);
-    that.setState({news: response.data});
-  })
-})
+    var counter = 0;
+    var list = [];
+    for(let i = 0; i<response.data.length; i++){
+        list.push(response.data[i].symbol)
+    }
+
+
+        axios.post('/coin/news', {list})
+      .then(function (response) {
+        console.log("RESPONSE.DATA", response.data);
+        that.setState({news: response.data});
+      })
+    })
 
 }
 

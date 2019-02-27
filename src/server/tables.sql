@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS coins (
   owner_id INTEGER,
   name TEXT,
   symbol TEXT,
-  buyprice INTEGER,
+  buyprice DECIMAL,
   logo TEXT,
   cmcId INTEGER,
-  qty INTEGER DEFAULT 0,
+  qty DECIMAL DEFAULT 0,
   timestamp_coin TIMESTAMP DEFAULT now()
 );
 

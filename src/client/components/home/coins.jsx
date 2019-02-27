@@ -62,12 +62,49 @@ class Coins extends React.Component{
               </div></div>
                     <ol className = "list-group">
                         {this.state.list.map((listitem , index)=>{
-                        return <li className = "list-group-item"><span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.id}.png`}/>
-                            <span>
-                                {listitem.name} |
-                            </span>
-                            <span>USD${listitem.quote.USD.price}</span>
-                            <button class = "float-right" onClick = {() => {this.clickHandler(index)}}>Track this coin</button>
+                        return <li className = "list-group-item" >
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm">
+                                <span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.id}.png`}/>  {listitem.name} | {listitem.symbol}
+
+                                </div>
+                                <div class="col-sm">
+                                    <strong>Current Price(USD)</strong>
+                                </div>
+                                <div class="col-sm">
+                                    <strong>Total Marketcap(USD)</strong>
+                                </div>
+                                 <div class="col-sm">
+                                    <strong>Circulating Supply</strong>
+                                </div>
+                                <div class="col-sm">
+                            <button onClick = {() => {this.clickHandler(index)}}>Track this coin</button>
+                                  </div>
+                              </div>
+                             <div class="row">
+                                <div class="col-sm">
+                                    % Change(1hr):<br/>
+                                    {
+                                    (listitem.quote.USD.percent_change_1h>=0) ?
+                                    <span class = "text-success">{listitem.quote.USD.percent_change_1h} % </span>:
+                                    <span class = "text-danger">{listitem.quote.USD.percent_change_1h} % </span>
+                                    }
+                                </div>
+                                <div class="col-sm">
+                                    $ {parseFloat(listitem.quote.USD.price).toFixed(6)}
+                                </div>
+                                <div class="col-sm">
+                                    $ {parseFloat(listitem.quote.USD.market_cap).toFixed(2)}
+                                </div>
+                                 <div class="col-sm">
+                                    {listitem.circulating_supply}
+                                </div>
+                                <div class="col-sm">
+                                    <small>Last Updated: {moment(listitem.quote.USD.last_updated).format("DD/MM/YYYY, h:mm:ss a")}</small>
+                                </div>
+                              </div>
+                            </div>
                         </li>
                         })}
                     </ol>

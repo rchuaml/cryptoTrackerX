@@ -10,7 +10,8 @@ class Track extends React.Component{
         quantity: "",
         message: "",
         sum: "",
-        costs: ""
+        costs: "",
+        buyarray: [],
     };
     this.deleteHandler = this.deleteHandler.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
@@ -82,10 +83,13 @@ class Track extends React.Component{
         axios.post('/coin/calculate', that.state.list)
         .then(function(response){
             var sum = 0;
+            var arraysum = [];
             for(var i = 0 ; i < response.data.length; i++){
                 sum += response.data[i];
+                arraysum.push(response.data[i]/that.state.list[i].qty);
             }
              that.setState({sum: sum});
+             that.setState({buyarray: arraysum});
         })
         .catch(function(error){
             console.log(error);
@@ -142,10 +146,16 @@ class Track extends React.Component{
                             <button onClick = {()=>{alertify.confirm('Comfirm Edit?', ()=>{this.editHandler(index)} )}}>Edit</button>
                             </div>
                             <div class="d-inline">
-                            <br/><span>Buy price: USD${listitem.buyprice}</span><br/>
+                            <br/><span>Buy price: USD${parseFloat(listitem.buyprice).toFixed(2)}</span><br/>
                             <span>Quantity: {listitem.qty}</span><br/>
                             <span>Time Added: {moment(listitem.timestamp_coin).format("dddd, MMMM Do YYYY, h:mm:ss a")}</span>
-
+                            <br/>
+                            {(this.state.buyarray.length>0) ?
+                            (this.state.buyarray[index]-listitem.buyprice>=0) ?
+                            <span class = "text-success">Current Price: USD$ {parseFloat(this.state.buyarray[index]).toFixed(2)}<br/>+ {parseFloat((this.state.buyarray[index]/listitem.buyprice)*100 - 100).toFixed(2)} % Profits</span>
+                            : <span class = "text-danger"> Current Price: USD$ {parseFloat(this.state.buyarray[index]).toFixed(2)}<br/> {parseFloat((this.state.buyarray[index]/listitem.buyprice)*100 - 100).toFixed(2)} % Loss</span>
+                            : <div></div>
+                            }
                             </div>
 
                         </li>

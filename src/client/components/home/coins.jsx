@@ -65,7 +65,6 @@ class Coins extends React.Component{
                             </span>
                             <span>USD${listitem.quote.USD.price}</span>
                             <button class = "float-right" onClick = {() => {this.clickHandler(index)}}>Track this coin</button>
-                            <small class = "float-right">Last Updated: {moment(listitem.quote.USD.last_updated).format("dddd, MMMM Do YYYY, h:mm:ss a")}</small>
                         </li>
                         })}
                     </ol>

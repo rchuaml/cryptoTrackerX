@@ -11,4 +11,5 @@ module.exports = (app, db) => {
   app.put('/coin/edit', crypto.coinedit);
   app.delete('/coin/delete', crypto.coinDelete);
   app.post('/coin/calculate', crypto.coinCalc);
+  app.post('/coin/news', crypto.coinNews);
 };

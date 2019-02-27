@@ -82,6 +82,15 @@ module.exports = (db) => {
             });
          }
 
+         let coinNews = (req,res) => {
+            console.log(req.body.list.join());
+            var coinBody = req.body.list;
+            request(`https://min-api.cryptocompare.com/data/v2/news/?categories=${coinBody},regulation&extraParams=cryptoTrackerX?4985d39847e8399dcde1cf89296096ec22bcaa40a9fdda71a2df935591b2af4d`, function(error,queryResponse, body){
+                var data = JSON.parse(body);
+                res.json(data.Data);
+            });
+         }
+
 
 
   return {
@@ -92,6 +101,7 @@ module.exports = (db) => {
     cointrack:cointrack,
     coinedit:coinedit,
     coinDelete:coinDelete,
-    coinCalc:coinCalc
+    coinCalc:coinCalc,
+    coinNews:coinNews
   };
 };

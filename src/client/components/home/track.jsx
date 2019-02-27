@@ -121,7 +121,7 @@ class Track extends React.Component{
             <div>
 
               <div class="card bg-warning text-white"><div class="card-header text-center">
-                <h1><i class="fa fa-briefcase" aria-hidden="true"></i> Portfolio</h1></div>
+                <h1><i class="fa fa-tasks" aria-hidden="true"></i> Portfolio</h1></div>
                 <div class = "card-body text-center">
               <button onClick = {this.calculateTotal}>Calculate total</button><br/><div id = "port" style = {divstyle} ><h6>Total value = USD$ {parseFloat(this.state.sum).toFixed(2)}</h6><h6>Total Costs = USD$ {this.state.costs}</h6>
                 {(this.state.sum-this.state.costs<0) ? <h6 class = "text-danger">Losses = USD$ {parseFloat(this.state.sum-this.state.costs).toFixed(2)}<br/>Percentage Loss = {(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} % </h6> : <div class = "text-success"><h6>Total Profits = USD$ +{parseFloat(this.state.sum-this.state.costs).toFixed(2)}</h6><h6>Percentage Profits = +{(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} %  </h6></div>}

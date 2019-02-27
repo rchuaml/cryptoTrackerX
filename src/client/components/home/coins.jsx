@@ -57,6 +57,9 @@ class Coins extends React.Component{
         return(
                 <div>
                     <div id = "message">{this.state.message}</div>
+            <div class="card bg-warning text-white text-center"><div class="card-body">
+            <h1><i class="fa fa-money" aria-hidden="true" ></i> Coins</h1>
+              </div></div>
                     <ol className = "list-group">
                         {this.state.list.map((listitem , index)=>{
                         return <li className = "list-group-item"><span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.id}.png`}/>

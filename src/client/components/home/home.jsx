@@ -17,12 +17,7 @@ class Home extends React.Component{
              </Carousel.Item>
             <Carousel.Item>
                     <img
-                      src="http://placekitten.com/1450/600" className = "img-fluid"
-                    />
-            </Carousel.Item>
-            <Carousel.Item>
-                    <img
-                      src="http://placekitten.com/1600/600" className = "img-fluid"
+                      src="https://res.cloudinary.com/ronzer/image/upload/c_scale,h_610,w_1600/v1551302446/track.jpg" className = "img-fluid"
                     />
             </Carousel.Item>
         </Carousel>

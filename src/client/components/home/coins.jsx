@@ -57,7 +57,7 @@ class Coins extends React.Component{
         return(
                 <div>
                     <div id = "message">{this.state.message}</div>
-            <div class="card bg-warning text-white text-center"><div class="card-body">
+            <div class="card bg-primary text-white text-center active"><div class="card-body">
             <h1><i class="fa fa-money" aria-hidden="true" ></i> Coins</h1>
               </div></div>
                     <ol className = "list-group">
@@ -79,7 +79,7 @@ class Coins extends React.Component{
                                     <strong>Circulating Supply</strong>
                                 </div>
                                 <div class="col-sm">
-                            <button onClick = {() => {this.clickHandler(index)}}>Track this coin</button>
+                            <button onClick = {() => {this.clickHandler(index)}} class = "btn btn-primary">Track this coin</button>
                                   </div>
                               </div>
                              <div class="row">

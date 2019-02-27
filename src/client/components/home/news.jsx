@@ -89,7 +89,7 @@ class News extends React.Component{
 
 
 
-            <div class="card bg-warning text-white text-center"><div class="card-body">
+            <div class="card bg-primary text-white text-center"><div class="card-body">
             <h1><i class="fa fa-newspaper-o" aria-hidden="true" ></i> News Feed</h1>
               </div></div>
                 <ul class = "list-group">

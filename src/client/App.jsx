@@ -74,12 +74,12 @@ class Footer extends React.Component{
                </a>
         </li>
         <li class="list-inline-item">
-          <a class="btn-floating btn-li mx-1 mr-4">
+          <a class="btn-floating btn-li mx-1 mr-4" href = "https://www.linkedin.com/in/ronniechua/" target = "_blank">
             <i class="fa fa-linkedin fa-3x text-light"> </i>
           </a>
         </li>
         <li class="list-inline-item">
-          <a class="btn-floating btn-dribbble mx-1 mr-4">
+          <a class="btn-floating btn-dribbble mx-1 mr-4" href="https://github.com/rchuaml" target="_blank">
             <i class="fa fa-github fa-3x text-light"> </i>
           </a>
         </li>

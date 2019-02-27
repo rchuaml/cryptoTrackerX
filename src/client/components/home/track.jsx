@@ -124,11 +124,11 @@ class Track extends React.Component{
         return(
             <div>
 
-              <div class="card bg-warning text-white"><div class="card-header text-center">
+              <div class="card bg-primary active text-white"><div class="card-header text-center">
                 <h1><i class="fa fa-tasks" aria-hidden="true"></i> Portfolio</h1></div>
-                <div class = "card-body text-center">
-              <button onClick = {this.calculateTotal}>Calculate total</button><br/><div id = "port" style = {divstyle} ><h6>Total value = USD$ {parseFloat(this.state.sum).toFixed(2)}</h6><h6>Total Costs = USD$ {this.state.costs}</h6>
-                {(this.state.sum-this.state.costs<0) ? <h6 class = "text-danger">Losses = USD$ {parseFloat(this.state.sum-this.state.costs).toFixed(2)}<br/>Percentage Loss = {(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} % </h6> : <div class = "text-success"><h6>Total Profits = USD$ +{parseFloat(this.state.sum-this.state.costs).toFixed(2)}</h6><h6>Percentage Profits = +{(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} %  </h6></div>}
+                <div class = "card-body text-center text-dark" style={{"background-color" : "lightblue"}}>
+              <button class = "btn btn-primary"onClick = {this.calculateTotal}>Calculate total</button><br/><div id = "port" style = {divstyle} ><h6>Total Value = USD$ {parseFloat(this.state.sum).toFixed(2)}</h6><h6>Total Costs = USD$ {this.state.costs}</h6>
+                {(this.state.sum-this.state.costs<0) ? <h6 class = "text-danger"><strong>Losses = USD$ {parseFloat(this.state.sum-this.state.costs).toFixed(2)}<br/>Percentage Loss = {(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} % </strong></h6> : <div class = "text-success"><h6><strong>Total Profits = USD$ +{parseFloat(this.state.sum-this.state.costs).toFixed(2)}</strong></h6><h6><strong>Percentage Profits = +{(parseFloat(this.state.sum/this.state.costs*100 - 100)).toFixed(2)} % </strong> </h6></div>}
               </div></div></div>
                 <ol className = "list-group">
                         {this.state.list.map((listitem , index)=>{
@@ -142,15 +142,15 @@ class Track extends React.Component{
                             <br/>
                             <input placeholder = {listitem.qty} onChange = {() => {this.changeQuantity(event)}} />
                             <input placeholder = {listitem.buyprice} onChange = {() => {this.changePrice(event)}}/>
-                            <button onClick = {()=>{alertify.confirm('Are you sure you want to delete this coin?', ()=>{this.deleteHandler(index)} )}}>Delete</button>
-                            <button onClick = {()=>{alertify.confirm('Comfirm Edit?', ()=>{this.editHandler(index)} )}}>Edit</button>
+                            <button class= "btn btn-danger" onClick = {()=>{alertify.confirm('Are you sure you want to delete this coin?', ()=>{this.deleteHandler(index)} )}}>Delete</button>
+                            <button class = "btn btn-info" style={{"width" : "72.89px"}} onClick = {()=>{alertify.confirm('Comfirm Edit?', ()=>{this.editHandler(index)} )}}>Edit</button>
                             </div>
                             <div class="d-inline">
                             <br/><span>Buy price: USD${parseFloat(listitem.buyprice).toFixed(2)}</span><br/>
                             <span>Quantity: {listitem.qty}</span><br/>
                             <span>Time Added: {moment(listitem.timestamp_coin).format("dddd, MMMM Do YYYY, h:mm:ss a")}</span>
                             <br/>
-                            {(this.state.buyarray.length>0) ?
+                            {(this.state.buyarray.length>0 & parseFloat(listitem.qty)>0) ?
                             (this.state.buyarray[index]-listitem.buyprice>=0) ?
                             <span class = "text-success">Current Price: USD$ {parseFloat(this.state.buyarray[index]).toFixed(2)}<br/>+ {parseFloat((this.state.buyarray[index]/listitem.buyprice)*100 - 100).toFixed(2)} % Profits</span>
                             : <span class = "text-danger"> Current Price: USD$ {parseFloat(this.state.buyarray[index]).toFixed(2)}<br/> {parseFloat((this.state.buyarray[index]/listitem.buyprice)*100 - 100).toFixed(2)} % Loss</span>

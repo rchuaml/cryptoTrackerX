@@ -28,7 +28,7 @@ I want to build an app that allows both features of tracking latest profits and 
 
 7.) Pulled information from tracking list and used a cryptoNews Api to generate a customised newsfeed and displayed them in a list 
 
-#### Further
+### Further
 
 1.) Created a dashboard to allow logged in users to have access to the main features of the app
 

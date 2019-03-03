@@ -150,7 +150,7 @@ class Track extends React.Component{
                             <span>Quantity: {listitem.qty}</span><br/>
                             <span>Time Added: {moment(listitem.timestamp_coin).format("dddd, MMMM Do YYYY, h:mm:ss a")}</span>
                             <br/>
-                            {(this.state.buyarray.length>0 & parseFloat(listitem.qty)>0) ?
+                            {(this.state.buyarray.length>0 && parseFloat(listitem.qty)>0) ?
                             (this.state.buyarray[index]-listitem.buyprice>=0) ?
                             <span class = "text-success">Current Price: USD$ {parseFloat(this.state.buyarray[index]).toFixed(2)}<br/>+ {parseFloat((this.state.buyarray[index]/listitem.buyprice)*100 - 100).toFixed(2)} % Profits</span>
                             : <span class = "text-danger"> Current Price: USD$ {parseFloat(this.state.buyarray[index]).toFixed(2)}<br/> {parseFloat((this.state.buyarray[index]/listitem.buyprice)*100 - 100).toFixed(2)} % Loss</span>

@@ -29,7 +29,6 @@ class News extends React.Component{
 
             axios.post('/coin/news', {list})
             .then(function (response) {
-                console.log("RESPONSE.DATA", response.data);
                 that.setState({news: response.data});
             })
         })
@@ -51,7 +50,6 @@ class News extends React.Component{
 
             axios.post('/coin/news', {list})
             .then(function (response) {
-                console.log("RESPONSE.DATA", response.data);
                 that.setState({news: response.data});
             })
         })
@@ -70,10 +68,10 @@ render(){
 
         return (
             <div>
-                <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            <div class = "modal-header">
+                <div className="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-xl">
+                        <div className="modal-content">
+                            <div className = "modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -86,17 +84,17 @@ render(){
 
 
 
-            <div class="card bg-primary text-white text-center"><div class="card-body">
-                <h1><i class="fa fa-newspaper-o" aria-hidden="true" ></i> News Feed</h1>
+            <div className="card bg-primary text-white text-center"><div className="card-body">
+                <h1><i className="fa fa-newspaper-o" aria-hidden="true" ></i> News Feed</h1>
             </div></div>
-                <ul class = "list-group">
+                <ul className = "list-group">
             {this.state.news.map((listitem , index)=>{
                 return <li className = "list-group-item" onClick = {() => {this.clickHandler(listitem.url)}} data-toggle="modal" data-target=".bd-example-modal-xl">
-                        <div class = "row">
-                            <div class = "col-sm-3">
+                        <div className = "row">
+                            <div className = "col-sm-3">
                                  <img src = {listitem.imageurl} width= "95%" height= "95%"/>
                             </div>
-                            <div class = "col-sm-9">
+                            <div className = "col-sm-9">
                             <h4>{listitem.title}</h4>
                             <p >{listitem.body}</p>
                             </div>

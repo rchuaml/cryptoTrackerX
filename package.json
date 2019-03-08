@@ -97,7 +97,7 @@
     "webpack-hot-middleware": ">=2.24.3",
     "winston": ">=3.2.1"
   },
-  "name": "shopping-react",
+  "name": "cryptoTrackerX",
   "bugs": {
     "url": "https://github.com/antonfisher/react-express-webpack/issues"
   },

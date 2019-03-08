@@ -62,32 +62,32 @@ class Footer extends React.Component{
     render(){
 
         return(
-<footer class="page-footer font-small special-color-dark pt-2 bg-dark fixed-bottom">
-<div class ="text-center text-light"><h4>Like what you see? Hire me</h4></div>
-    <div class="container">
+<footer className="page-footer font-small special-color-dark pt-2 bg-dark fixed-bottom">
+<div className ="text-center text-light"><h4>Like what you see? Hire me</h4></div>
+    <div className="container">
 
-      <ul class="list-unstyled list-inline text-center">
+      <ul className="list-unstyled list-inline text-center">
 
-        <li class="list-inline-item">
-          <a class="btn-floating btn-gplus mx-1 mr-4" href="mailto:ronchuaml@gmail.com?subject=Hello%20Ronnie">
-            <i class="fa fa-envelope fa-3x text-light"></i>
+        <li className="list-inline-item">
+          <a className="btn-floating btn-gplus mx-1 mr-4" href="mailto:ronchuaml@gmail.com?subject=Hello%20Ronnie">
+            <i className="fa fa-envelope fa-3x text-light"></i>
                </a>
         </li>
-        <li class="list-inline-item">
-          <a class="btn-floating btn-li mx-1 mr-4" href = "https://www.linkedin.com/in/ronniechua/" target = "_blank">
-            <i class="fa fa-linkedin fa-3x text-light"> </i>
+        <li className="list-inline-item">
+          <a className="btn-floating btn-li mx-1 mr-4" href = "https://www.linkedin.com/in/ronniechua/" target = "_blank">
+            <i className="fa fa-linkedin fa-3x text-light"> </i>
           </a>
         </li>
-        <li class="list-inline-item">
-          <a class="btn-floating btn-dribbble mx-1 mr-4" href="https://github.com/rchuaml" target="_blank">
-            <i class="fa fa-github fa-3x text-light"> </i>
+        <li className="list-inline-item">
+          <a className="btn-floating btn-dribbble mx-1 mr-4" href="https://github.com/rchuaml" target="_blank">
+            <i className="fa fa-github fa-3x text-light"> </i>
           </a>
         </li>
       </ul>
 
     </div>
 
-    <div class = "text-center">© 2019 Copyright:
+    <div className = "text-center">© 2019 Copyright:
       <a href="https://github.com/rchuaml" target="_blank"> Ronnie Chua</a>
     </div>
 
@@ -102,11 +102,9 @@ class App extends React.Component {
     this.state = {
       loggedIn : false,
     };
-    console.log("constructor in parent")
   }
 
     render() {
-        console.log(this.props.location);
               return(
                 <div>
                 <Navbar/>

@@ -22,16 +22,13 @@ class Signup extends React.Component {
 
     changeUser(event){
       this.setState({username:event.target.value});
-      console.log("change", event.target.value);
     }
 
     changePass(event){
       this.setState({password:event.target.value});
-      console.log("change", event.target.value);
     }
 
     signupHandler(){
-        console.log("signup pressed");
         var that = this;
         axios.post('/user/signup', {
         username: this.state.username,
@@ -52,7 +49,6 @@ class Signup extends React.Component {
     }
 
   render() {
-    console.log("truthy inside signup", cookies.get('loggedIn'));
     if(this.state.redirect === false){
     return (
         <div>

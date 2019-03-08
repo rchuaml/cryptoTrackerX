@@ -22,12 +22,10 @@ class Login extends React.Component {
 
     changeUser(event){
       this.setState({username:event.target.value});
-      console.log("change", event.target.value);
     }
 
     changePass(event){
       this.setState({password:event.target.value});
-      console.log("change", event.target.value);
     }
 
     loginHandler(){
@@ -60,7 +58,6 @@ class Login extends React.Component {
     }
 
   render() {
-    console.log("truthy inside login", cookies.get('loggedIn'));
     if(this.state.redirect === false){
     return (
         <div>

@@ -1,5 +1,9 @@
 # cryptoTrackerX
 
+## Hosted on Heroku
+https://cryptotrackerx.herokuapp.com/
+Sign up for an account to access features
+
 ## Built with
 Javascript, Node.js, React.js, Express, PostgreSQL, DOM, AJAX, Bootstrap and Webpack
 

@@ -2,6 +2,7 @@
 
 ## Hosted on Heroku
 https://cryptotrackerx.herokuapp.com/
+
 Sign up for an account to access features
 
 ## Built with

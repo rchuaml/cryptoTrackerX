@@ -1,5 +1,15 @@
+
+
+
 module.exports = (app, db) => {
   const crypto = require('./controllers/crypto')(db);
-  app.get('/query', crypto.get);
-  app.post('/user/login', crypto.login)
+  app.post('/user/login', crypto.login);
+  app.post('/user/signup',crypto.signup);
+  app.get('/coin/data', crypto.coindata);
+  app.post('/coin/add', crypto.coinadd);
+  app.get('/coin/track', crypto.cointrack);
+  app.put('/coin/edit', crypto.coinedit);
+  app.delete('/coin/delete', crypto.coinDelete);
+  app.post('/coin/calculate', crypto.coinCalc);
+  app.post('/coin/news', crypto.coinNews);
 };

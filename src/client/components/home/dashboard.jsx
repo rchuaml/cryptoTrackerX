@@ -56,7 +56,6 @@ newsClick(){
                                     <li onClick = {this.trackClick} class = "list-group-item list-group-item-primary"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Tracking List</span></li>
                                     <li onClick = {this.newsClick} class = "list-group-item list-group-item-primary"><i class="fa fa-newspaper-o" aria-hidden="true" ></i><span class="hidden-xs hidden-sm"> News </span></li>
                                     <li class = "list-group-item list-group-item-primary"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Users</span></li>
-                                    <li class = "list-group-item list-group-item-primary"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">   Setting</span></li>
                                 </ul>
                             </div>
                         </div>

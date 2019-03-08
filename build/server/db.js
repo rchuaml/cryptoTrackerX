@@ -1,5 +1,5 @@
 const pg = require('pg');
-const book = require('./models/crypto');
+const crypto = require('./models/crypto');
 const url = require('url');
 
 
@@ -23,7 +23,7 @@ if( process.env.DATABASE_URL ){
   configs = {
     user: 'ronniechua',
     host: '127.0.0.1',
-    database: 'bookdb',
+    database: 'cryptodb',
     port: 5432
   };
 }
@@ -39,7 +39,7 @@ module.exports = {
   /*
    * ADD APP MODELS HERE
    */
-  book: book(pool),
+  crypto: crypto(pool),
 
 
   //make queries directly from here

@@ -63,7 +63,7 @@ class Footer extends React.Component{
 
         return(
 <footer class="page-footer font-small special-color-dark pt-2 bg-dark fixed-bottom">
-<div class ="text-center text-light"><h4>Like what you see? Hire me!</h4></div>
+<div class ="text-center text-light"><h4>Like what you see? Hire me</h4></div>
     <div class="container">
 
       <ul class="list-unstyled list-inline text-center">

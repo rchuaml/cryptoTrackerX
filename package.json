@@ -22,7 +22,9 @@
     "test": "exit 1",
     "release:patch": "npm run lint && npx standard-version -r patch && git push --follow-tags origin master",
     "release:minor": "npm run lint && npx standard-version -r minor && git push --follow-tags origin master",
-    "release:major": "npm run lint && npx standard-version -r major && git push --follow-tags origin master"
+    "release:major": "npm run lint && npx standard-version -r major && git push --follow-tags origin master",
+    "start": "node index.js",
+  	"heroku-postbuild": "npm install && npm run dev"
   },
   "postcss": {},
   "devDependencies": {
@@ -103,4 +105,5 @@
   },
   "homepage": "https://github.com/antonfisher/react-express-webpack#readme",
   "main": "index.js"
+
 }

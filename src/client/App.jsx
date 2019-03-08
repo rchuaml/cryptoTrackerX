@@ -69,7 +69,7 @@ class Footer extends React.Component{
       <ul class="list-unstyled list-inline text-center">
 
         <li class="list-inline-item">
-          <a class="btn-floating btn-gplus mx-1 mr-4">
+          <a class="btn-floating btn-gplus mx-1 mr-4" href="mailto:ronchuaml@gmail.com?subject=Hello%20Ronnie">
             <i class="fa fa-envelope fa-3x text-light"></i>
                </a>
         </li>

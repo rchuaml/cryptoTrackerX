@@ -90,7 +90,7 @@ module.exports = (db) => {
                 response.json(queryResult2.rows);
             });
         });
-}
+    }
     let coinEdit = (response, request, details, callback) => {
             console.log(details);
             let queryString = `UPDATE coins SET qty = ${parseFloat(details.quantity)}, buyprice = ${parseFloat(details.price)} WHERE id = ${details.id}`;

@@ -40,3 +40,7 @@ I want to build an app that allows both features of tracking latest profits and 
 2.) Added bootstrap and scss styling to all pages
 
 3.) Added a embedded news reader using modal
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

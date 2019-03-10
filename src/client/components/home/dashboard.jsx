@@ -2,6 +2,7 @@ import React from 'react';
 import Coins from './coins';
 import Track from './track';
 import News from './news';
+import Users from './users';
 import Homecss from '../../styles/home.scss';
 
 class Dashboard extends React.Component{
@@ -14,6 +15,8 @@ class Dashboard extends React.Component{
     this.trackClick = this.trackClick.bind(this);
     this.coinHandler = this.coinHandler.bind(this);
     this.newsClick = this.newsClick.bind(this);
+    this.usersClick = this.usersClick.bind(this);
+
 }
 
 homeClick(){
@@ -32,6 +35,10 @@ newsClick(){
     this.setState({selected:"news"});
 }
 
+usersClick(){
+    this.setState({selected:"users"});
+}
+
     render(){
 
         var selected = <Coins/>
@@ -41,6 +48,8 @@ newsClick(){
             selected = <Track/>
         }else if(this.state.selected === "news"){
             selected = <News/>
+        }else if(this.state.selected === "users"){
+            selected = <Users/>
         }
     return (
 
@@ -54,7 +63,7 @@ newsClick(){
                                     <li onClick = {this.coinHandler} className = "list-group-item list-group-item-primary"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Coins</span></li>
                                     <li onClick = {this.trackClick} className = "list-group-item list-group-item-primary"><i className="fa fa-bar-chart" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Tracking List</span></li>
                                     <li onClick = {this.newsClick} className = "list-group-item list-group-item-primary"><i className="fa fa-newspaper-o" aria-hidden="true" ></i><span className="hidden-xs hidden-sm"> News </span></li>
-                                    <li className = "list-group-item list-group-item-primary"><i className="fa fa-calendar" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Users</span></li>
+                                    <li onClick = {this.usersClick} className = "list-group-item list-group-item-primary"><i className="fa fa-calendar" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Users</span></li>
                                 </ul>
                             </div>
                         </div>

@@ -9,12 +9,10 @@ var sha256 = require('js-sha256');
  */
 module.exports = (db) => {
 
-    let getAll = (callback) => {
+    let getAll = (response, callback) => {
         let query = 'SELECT * FROM users';
-
         db.query(query, (error, result) => {
-            callback(error, result);
-            console.log(result);
+            response.json(result.rows);
         });
     };
 
@@ -121,6 +119,7 @@ module.exports = (db) => {
         addCoin,
         trackCoin,
         coinEdit,
-        coinDelete
+        coinDelete,
+        getAll
     };
 };

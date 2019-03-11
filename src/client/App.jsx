@@ -20,6 +20,9 @@ class Navbar extends React.Component{
 
 
     render(){
+        const marginz = {
+            marginLeft: '150px'
+        }
 return(
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div className="container">
@@ -29,6 +32,11 @@ return(
         </button>
     <div className="collapse navbar-collapse" id="navbarResponsive">
       <ul className="navbar-nav ml-auto">
+            {(cookies.get('loggedIn')=="true") ?
+        <h6 class = "nav-item text-primary">
+          Logged in as <br/> {cookies.get('userName')} </h6>
+        : <div/>
+        }
         <li className="nav-item">
           <Link className="nav-link" to="/">Home
                 <span className="sr-only">(current)</span>

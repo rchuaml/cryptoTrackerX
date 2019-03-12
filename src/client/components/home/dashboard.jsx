@@ -3,6 +3,7 @@ import Coins from './coins';
 import Track from './track';
 import News from './news';
 import Users from './users';
+import Charts from './chart';
 import Homecss from '../../styles/home.scss';
 
 class Dashboard extends React.Component{
@@ -16,7 +17,7 @@ class Dashboard extends React.Component{
     this.coinHandler = this.coinHandler.bind(this);
     this.newsClick = this.newsClick.bind(this);
     this.usersClick = this.usersClick.bind(this);
-
+    this.chartClick = this.chartClick.bind(this);
 }
 
 homeClick(){
@@ -39,6 +40,10 @@ usersClick(){
     this.setState({selected:"users"});
 }
 
+chartClick(){
+    this.setState({selected:"charts"});
+}
+
     render(){
 
         var selected = <Coins/>
@@ -50,6 +55,8 @@ usersClick(){
             selected = <News/>
         }else if(this.state.selected === "users"){
             selected = <Users/>
+        }else if(this.state.selected === "charts"){
+            selected = <Charts/>
         }
     return (
 
@@ -62,6 +69,7 @@ usersClick(){
                                     <li onClick = {this.homeClick} className="list-group-item-primary list-group-item" id = "lol"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm "></span>   Home</li>
                                     <li onClick = {this.coinHandler} className = "list-group-item list-group-item-primary"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Coins</span></li>
                                     <li onClick = {this.trackClick} className = "list-group-item list-group-item-primary"><i className="fa fa-bar-chart" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Tracking List</span></li>
+                                    <li onClick = {this.chartClick} className = "list-group-item list-group-item-primary"><i className="fa fa-line-chart" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Charts </span></li>
                                     <li onClick = {this.newsClick} className = "list-group-item list-group-item-primary"><i className="fa fa-newspaper-o" aria-hidden="true" ></i><span className="hidden-xs hidden-sm"> News </span></li>
                                     <li onClick = {this.usersClick} className = "list-group-item list-group-item-primary"><i className="fa fa-calendar" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Users</span></li>
                                 </ul>

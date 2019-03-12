@@ -97,6 +97,15 @@ module.exports = (db) => {
             });
          }
 
+         let coinChart = (req,res) => {
+            console.log(req.body.sym)
+            var symbol = req.body.sym;
+            request(`https://min-api.cryptocompare.com/data/histoday?fsym=${symbol}&tsym=USD&limit=30&api_key=4985d39847e8399dcde1cf89296096ec22bcaa40a9fdda71a2df935591b2af4d`, function(error,queryResponse, body){
+            var data = JSON.parse(body);
+            res.json(data.Data);
+            });
+         }
+
 
 
   return {
@@ -109,6 +118,7 @@ module.exports = (db) => {
     coinDelete:coinDelete,
     coinCalc:coinCalc,
     coinNews:coinNews,
-    getall: getall
+    getall: getall,
+    coinChart: coinChart
   };
 };

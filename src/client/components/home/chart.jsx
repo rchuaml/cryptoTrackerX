@@ -62,7 +62,7 @@ var config = {
             data: {
                 labels: dalist,
                 datasets: [{
-                        label: "2 day",
+                        label: "Price at date",
                         data: palist,
                         fill: false,
                         backgroundColor: "red ",

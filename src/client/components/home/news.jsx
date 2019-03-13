@@ -72,6 +72,9 @@ render(){
                     <div className="modal-dialog modal-xl">
                         <div className="modal-content">
                             <div className = "modal-header">
+                            <div className = "mx-auto">
+                            <p className = "border border-dark rounded p-1" style={{"background-color" : "lightblue"}}>{this.state.url}</p>
+                            </div>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>

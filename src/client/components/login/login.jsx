@@ -64,23 +64,44 @@ class Login extends React.Component {
     <div id = "error">
         {this.state.error}
     </div>
-   <form className = "col-5">
-   <h3>Login Form</h3>
-          <div className="form-group">
-            <label className ="username mt-3 mb-4">Username</label>
-            <input onChange = {this.changeUser} name="username" type="text" className="form-control" placeholder="Enter username" required />
-          </div>
-          <div className="form-group">
-            <label className= "password mt-3 mb-4">Password</label>
-            <input onChange = {this.changePass} name="password" type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required />
-          </div>
-          <div className="form-group form-check">
-            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-            <label id="checklabel">Remember me</label><label className = "float-right">Dont have an account?<br/><Link to = "/signup"> Sign Up here</Link></label>
+            <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fa fa-lock"></i> &nbsp; Sign In</h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                       <input onChange = {this.changeUser} name="username" type="text" className="form-control" placeholder="Enter username" required />
+                                </div>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                    </div>
+                        <input onChange = {this.changePass} name="password" type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required />
+                                </div>
+                                <div class="row align-items-center remember">
+                                    <input type="checkbox" className = "ml-3"/>Remember Me
+                                </div>
+                                <div class="form-group">
+                      <button type= "button" onClick = {this.loginHandler} className="btn btn-primary">Login</button>
+                      </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-center links">
+                                Don't have an account?<Link style={{"color" : "lightblue"}} to = "/signup"> Sign Up here</Link>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-          <button type= "button" onClick = {this.loginHandler} className="btn btn-primary">Login</button>
-        </form>
         </div>
     );
 } else{

@@ -59,25 +59,25 @@ class Coins extends React.Component{
                         return <li className = "list-group-item" >
                             <div className="container">
                               <div className="row">
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                 <span>{index+1}.</span> <img src = {`https://s2.coinmarketcap.com/static/img/coins/32x32/${listitem.id}.png`}/>  {listitem.name} | {listitem.symbol}
 
                                 </div>
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                     <strong>Current Price(USD)</strong>
                                 </div>
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                     <strong>Total Marketcap(USD)</strong>
                                 </div>
-                                 <div className="col-sm">
+                                 <div className="col-sm col-md">
                                     <strong>Circulating Supply</strong>
                                 </div>
-                                <div className="col-sm">
-                            <button onClick = {() => {this.clickHandler(index)}} className = "btn btn-primary">Track this coin</button>
+                                <div className="col-sm col-md">
+                                <button onClick = {() => {this.clickHandler(index)}} className = "btn btn-primary">Track this coin</button>
                                   </div>
                               </div>
                              <div className="row">
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                     % Change(1hr):<br/>
                                     {
                                     (listitem.quote.USD.percent_change_1h>=0) ?
@@ -85,16 +85,16 @@ class Coins extends React.Component{
                                     <span className = "text-danger">{listitem.quote.USD.percent_change_1h} % </span>
                                     }
                                 </div>
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                     $ {parseFloat(listitem.quote.USD.price).toFixed(6)}
                                 </div>
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                     $ {parseFloat(listitem.quote.USD.market_cap).toFixed(2)}
                                 </div>
-                                 <div className="col-sm">
+                                 <div className="col-sm col-md">
                                     {listitem.circulating_supply}
                                 </div>
-                                <div className="col-sm">
+                                <div className="col-sm col-md">
                                     <small>Last Updated: {moment(listitem.quote.USD.last_updated).format("DD/MM/YYYY, h:mm:ss a")}</small>
                                 </div>
                               </div>

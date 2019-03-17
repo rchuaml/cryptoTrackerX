@@ -29,23 +29,38 @@ class Signup extends React.Component {
     }
 
     signupHandler(){
-        var that = this;
-        axios.post('/user/signup', {
-        username: this.state.username,
-        password: this.state.password
-      }).then(function (response) {
-        if(response.data === "1"){
+        if (this.state.password.length===0 && this.state.username.length ===0){
             document.getElementById("error").className = "alert alert-danger";
-            that.setState({error:"Username already exists in our system, please try another username!"});
+            this.setState({error: "Please fill in both input fields!"});
         }
-        else if (response.data === "2"){
-            cookies.set('loggedIn', 'true', { path: '/' });
-            that.setState({redirect: true});
+
+        else if (this.state.password.length<8){
+            document.getElementById("error").className = "alert alert-danger";
+            this.setState({error: "Password length too short(minimum 8 characters)"});
+        }else if (this.state.username.length<6){
+            this.setState({error: "Username length too short(minimum 6 characters)"});
         }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        else{
+            var that = this;
+            var correctuser = this.state.username;
+            axios.post('/user/signup', {
+            username: this.state.username,
+            password: this.state.password
+          }).then(function (response) {
+            if(response.data === "1"){
+                document.getElementById("error").className = "alert alert-danger";
+                that.setState({error:"Username already exists in our system, please try another username!"});
+            }
+            else if (response.data === "2"){
+                cookies.set('loggedIn', 'true', { path: '/' });
+                cookies.set('userName', correctuser, { path: '/' });
+                that.setState({redirect: true});
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
     }
 
   render() {
@@ -55,25 +70,49 @@ class Signup extends React.Component {
     <div id = "error">
         {this.state.error}
     </div>
-   <form className = "col-5">
-   <h3>Sign up form</h3>
-          <div className="form-group">
-            <label className ="username mt-3 mb-4">Username</label>
-            <input onChange = {this.changeUser} name="username" type="text" className="form-control" placeholder="Enter username" required />
-          </div>
-          <div className="form-group">
-            <label className= "password mt-3 mb-4">Password</label>
-            <input onChange = {this.changePass} name="password" type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required />
-          </div>
+            <div class="container">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fa fa-user-plus"></i> &nbsp; Sign Up</h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                       <input onChange = {this.changeUser} name="username" type="text" className="form-control" placeholder="Enter username" required />
+                                </div>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                    </div>
+                        <input onChange = {this.changePass} name="password" type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required />
+                                </div>
 
-          <button type= "button" onClick = {this.signupHandler} className="btn btn-primary mt-3">Signup</button>
-        </form>
+                                <div class="form-group">
+                      <button type= "button" onClick = {this.signupHandler} className="btn btn-primary">Sign Up</button>
+                      </div>
+                            </form>
+                        </div>
+                        <div class="card-footer" style={{"width" : "303px"}}>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }   else{
         return(
-        <Redirect to= "/"/>
-        )
+        <Redirect to= {{
+            pathname: '/',
+            state: { message: 'Successfully signed up',
+                        type: 'success'
+             }
+        }}
+        />
+    )
   }
 }
 }

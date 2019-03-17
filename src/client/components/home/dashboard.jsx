@@ -5,6 +5,7 @@ import News from './news';
 import Users from './users';
 import Charts from './chart';
 import Homecss from '../../styles/home.scss';
+import '../../styles/dashboard.scss'
 
 class Dashboard extends React.Component{
     constructor(){
@@ -62,10 +63,13 @@ chartClick(){
 
                 <div>
                     <div className="row">
-                        <div className="col-3">
-                            <div className = "position-fixed">
-                                <ul className = "list-group " style={{"width" : "350px"}}>
-                                    <li className=" list-group-item active" ><h4 className="hidden-xs hidden-sm text-light">Menu</h4></li>
+                        <div className="col-xl-3 col-lg-3">
+                            <div className = {Homecss.dashboard}>
+                             <div className="card bg-primary text-white text-center active">
+                                    <h1>Menu</h1>
+
+                            </div>
+                                <ul className = "list-group">
                                     <li onClick = {this.homeClick} className="list-group-item-primary list-group-item" id = "lol"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm "></span>   Home</li>
                                     <li onClick = {this.coinHandler} className = "list-group-item list-group-item-primary"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Coins</span></li>
                                     <li onClick = {this.trackClick} className = "list-group-item list-group-item-primary"><i className="fa fa-bar-chart" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Tracking List</span></li>
@@ -75,7 +79,7 @@ chartClick(){
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-9">
+                        <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                         {selected}
                         </div>
                     </div>

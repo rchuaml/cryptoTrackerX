@@ -19,7 +19,8 @@ class Charts extends React.Component{
         var that = this;
         axios.get('/coin/track')
       .then(function (response) {
-        that.setState({list:response.data});
+        var uniq = response.data;
+        that.setState({list:uniq});
       })
       .catch(function (error) {
         console.log(error);
@@ -30,7 +31,8 @@ class Charts extends React.Component{
         var that = this;
         axios.get('/coin/track')
       .then(function (response) {
-        that.setState({list:response.data});
+        var uniq = response.data;
+        that.setState({list:uniq});
       })
       .catch(function (error) {
         console.log(error);

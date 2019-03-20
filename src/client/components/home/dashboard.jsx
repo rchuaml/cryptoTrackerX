@@ -67,9 +67,8 @@ chartClick(){
                             <div className = {Homecss.dashboard}>
                              <div className="card bg-primary text-white text-center active">
                                     <h1>Menu</h1>
-
                             </div>
-                                <ul className = "list-group">
+                                <ul className = "list-group" id = "dashlist">
                                     <li onClick = {this.homeClick} className="list-group-item-primary list-group-item" id = "lol"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm "></span>   Home</li>
                                     <li onClick = {this.coinHandler} className = "list-group-item list-group-item-primary"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Coins</span></li>
                                     <li onClick = {this.trackClick} className = "list-group-item list-group-item-primary"><i className="fa fa-bar-chart" aria-hidden="true"></i><span className="hidden-xs hidden-sm">   Tracking List</span></li>

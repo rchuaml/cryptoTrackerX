@@ -12,12 +12,12 @@ class Home extends React.Component{
         <Carousel>
             <Carousel.Item>
                 <img
-                  src="https://res.cloudinary.com/ronzer/image/upload/c_scale,h_610,w_1600/v1550906407/ironmanfinal.jpg" className = "img-fluid"
+                  src="https://res.cloudinary.com/ronzer/image/upload/c_scale,h_610,w_1600/v1550906407/ironmanfinal.jpg" className = "img-fluid" id = "carousel1"
                 />
              </Carousel.Item>
             <Carousel.Item>
                     <img
-                      src="https://res.cloudinary.com/ronzer/image/upload/c_scale,h_610,w_1600/v1551302446/track.jpg" className = "img-fluid"
+                      src="https://res.cloudinary.com/ronzer/image/upload/c_scale,h_610,w_1600/v1551302446/track.jpg" className = "img-fluid" id = "carousel2"
                     />
             </Carousel.Item>
         </Carousel>

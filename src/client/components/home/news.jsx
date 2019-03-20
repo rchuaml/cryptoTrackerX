@@ -90,7 +90,7 @@ render(){
             <div className="card bg-primary text-white text-center"><div className="card-body">
                 <h1><i className="fa fa-newspaper-o" aria-hidden="true" ></i> News Feed</h1>
             </div></div>
-                <ul className = "list-group">
+                <ul className = "list-group" id = "newslist">
             {this.state.news.map((listitem , index)=>{
                 return <li className = "list-group-item" onClick = {() => {this.clickHandler(listitem.url)}} data-toggle="modal" data-target=".bd-example-modal-xl">
                         <div className = "row">
